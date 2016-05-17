@@ -4,7 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
-
 /**
  * The persistent class for the estacionamiento database table.
  * 
@@ -22,14 +21,17 @@ public class Estacionamiento implements Serializable {
 	@Column(name="nombreEstacionamiento", nullable=false, length=45)
 	private String nombreEstacionamiento;
 
-	@Column(name="capacidad", unique=true, nullable=false)
+	@Column(name="capacidad", nullable=false)
 	private int capacidad;
 	
-	@Column(name="ocupados", unique=true, nullable=false)
+	@Column(name="ocupados", nullable=false)
 	private int ocupados;
 	
-	@Column(name="ubicacion", unique=true, nullable=false)
-	private byte[] ubicacion;
+	@Column(name="ubi_x", nullable=false)
+	private float ubi_x;
+	
+	@Column(name="ubi_y", nullable=false)
+	private float ubi_y;
 	
 	public Estacionamiento() {
 	}
@@ -66,13 +68,23 @@ public class Estacionamiento implements Serializable {
 		this.ocupados = ocupados;
 	}
 
-	public byte[] getUbicacion() {
-		return ubicacion;
+	public float getUbi_x() {
+		return ubi_x;
 	}
 
-	public void setUbicacion(byte[] ubicacion) {
-		this.ubicacion = ubicacion;
+	public void setUbi_x(float ubi_x) {
+		this.ubi_x = ubi_x;
 	}
+
+	public float getUbi_y() {
+		return ubi_y;
+	}
+
+	public void setUbi_y(float ubi_y) {
+		this.ubi_y = ubi_y;
+	}
+
+	
 	
 	
 	

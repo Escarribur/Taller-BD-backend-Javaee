@@ -45,10 +45,10 @@ public class Usuario implements Serializable {
 	@Column(name="telefono", nullable=false, length=20)
 	private String telefono;
 	
-	@Column(name="sexo", unique=true, nullable=false)
+	@Column(name="sexo", nullable=false)
 	private int sexo;
 	
-	@Column(name="fechaNacimiento", unique=true, nullable=false)
+	@Column(name="fechaNacimiento",  nullable=false)
 	private Date fechaNacimiento;
 	
 	public Usuario() {

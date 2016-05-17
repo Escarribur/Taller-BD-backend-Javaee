@@ -1,8 +1,11 @@
 package ejb;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import facade.AbstractFacade;
 import facade.EstacionamientoFacade;
@@ -23,6 +26,7 @@ public class EstacionamientoFacadeEJB extends AbstractFacade<Estacionamiento> im
 	protected EntityManager getEntityManager() {
 		return this.em;
 	}
+	
 	
 	
 	

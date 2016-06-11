@@ -9,7 +9,7 @@ import java.sql.Date;
 
 /**
  * The persistent class for the usuario database table.
- * 
+ *
  */
 @Entity
 @Table(name="usuario")
@@ -29,28 +29,34 @@ public class Usuario implements Serializable {
 
 	@Column(name="password", nullable=false, length=45)
 	private String password;
-	
+
 	@Column(name="nickname", nullable=false, length=45)
 	private String nickname;
-	
+
 	@Column(name="email", nullable=false, length=100)
 	private String email;
-	
+
 	@Column(name="direccion", nullable=false, length=200)
 	private String direccion;
-	
+
 	@Column(name="estacionamiento_idestacionamiento", unique=true, nullable=false)
 	private int estacionamiento_idestacionamiento;
-	
+
 	@Column(name="telefono", nullable=false, length=20)
 	private String telefono;
-	
+
 	@Column(name="sexo", nullable=false)
 	private int sexo;
-	
+
 	@Column(name="fechaNacimiento",  nullable=false)
 	private Date fechaNacimiento;
-	
+
+	@Column(name="ubi_xUsuario", nullable=true)
+	private float ubi_xUsuario;
+
+	@Column(name="ubi_yUsuario", nullable=true)
+	private float ubi_yUsuario;
+
 	public Usuario() {
 	}
 
@@ -142,6 +148,22 @@ public class Usuario implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	
+	public float getUbi_xUsuario() {
+		return ubi_xUsuario;
+	}
+
+	public void setUbi_xUsuario(float ubi_xUsuario) {
+		this.ubi_xUsuario = ubi_xUsuario;
+	}
+
+	public float getUbi_yUsuario() {
+		return ubi_yUsuario;
+	}
+
+	public void setUbi_yUsuario(float ubi_yUsuario) {
+		this.ubi_yUsuario = ubi_yUsuario;
+	}
+
+
 
 }

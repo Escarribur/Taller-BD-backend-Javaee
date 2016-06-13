@@ -6,6 +6,16 @@ import javax.persistence.*;
 import java.sql.Date;
 
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 
 /**
  * The persistent class for the usuario database table.
@@ -15,6 +25,10 @@ import java.sql.Date;
 @Table(name="usuario")
 @NamedQueries({
 	@NamedQuery(name="Usuario.findAll", query="SELECT a FROM Usuario a"),
+	@NamedQuery(name="Usuario.findById", query="SELECT a FROM Usuario a WHERE a.idusuario = :idusuario"),
+	@NamedQuery(name="Usuario.findByNickname", query="SELECT a FROM Usuario a WHERE a.nickname = :nickname"),
+	@NamedQuery(name="Usuario.findByEmail", query="SELECT a FROM Usuario a WHERE a.email = :email"),
+
 })
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;

@@ -6,10 +6,18 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.ws.rs.core.Response;
 
 import facade.AbstractFacade;
 import facade.UsuarioFacade;
 import model.Usuario;
+
+
 
 @Stateless
 public class UsuarioFacadeEJB extends AbstractFacade<Usuario> implements UsuarioFacade {
@@ -36,5 +44,32 @@ public class UsuarioFacadeEJB extends AbstractFacade<Usuario> implements Usuario
 		//return em.createNamedQuery("Usuario.cercanos", Usuario.class)
         //		.setParameter("usuarioX", ubix).setParameter("usuarioY", ubiy).getResultList();
 	}
+
+	@Override
+	public Response login(JsonObject datos){
+		JsonObjectBuilder jsonObjBuilder = Json.createObjectBuilder();
+		String nickname = datos.getString("nickname");
+		String password = datos.getString("password");
+		try{
+			Usuario user = em.createNamedQuery("Usuario.findByNickname", Usuario.class)
+	        		.setParameter("nickname", nickname).getSingleResult();
+			if(user.getPassword().equals(password)){
+				jsonObjBuilder.add("INFO", "Loggeado")
+					.add("usuarioId", user.getIdusuario())
+					.add("nickname",user.getNickname())
+					.add("email",user.getEmail());
+			} else {
+				jsonObjBuilder.add("INFO", "La password no corresponde, vuelva a intentarlo");
+			}
+			JsonObject jsonObj = jsonObjBuilder.build();
+			return Response.status(Response.Status.OK).entity(jsonObj).build();
+		} catch(Exception e){
+			jsonObjBuilder.add("INFO", "No existe un usuario con ese username");
+			JsonObject jsonObj = jsonObjBuilder.build();
+			return Response.status(Response.Status.OK).entity(jsonObj).build();
+		}
+	}
+	
+
 
 }

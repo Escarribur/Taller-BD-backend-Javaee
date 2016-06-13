@@ -36,6 +36,16 @@ public class UsuarioService {
         return usuarioFacadeEJB.find(id);
     }
 	
+	
+	@GET
+    @Path("{id}/cercanos") 
+    @Produces({"application/xml", "application/json"})
+    public List<Usuario> cercanos(@PathParam("id") Integer id) {
+		Usuario user = usuarioFacadeEJB.find(id);
+        return usuarioFacadeEJB.cercanos(user.getUbi_xUsuario(), user.getUbi_yUsuario());
+    }
+	
+	
 	@POST
     @Consumes({"application/xml", "application/json"})
     public void create(Usuario entity) {

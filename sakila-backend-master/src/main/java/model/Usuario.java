@@ -9,11 +9,13 @@ import java.sql.Date;
 
 /**
  * The persistent class for the usuario database table.
- *
+ * 
  */
 @Entity
 @Table(name="usuario")
-@NamedQuery(name="Usuario.findAll", query="SELECT a FROM Usuario a")
+@NamedQueries({
+	@NamedQuery(name="Usuario.findAll", query="SELECT a FROM Usuario a"),
+})
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -29,34 +31,34 @@ public class Usuario implements Serializable {
 
 	@Column(name="password", nullable=false, length=45)
 	private String password;
-
+	
 	@Column(name="nickname", nullable=false, length=45)
 	private String nickname;
-
+	
 	@Column(name="email", nullable=false, length=100)
 	private String email;
-
+	
 	@Column(name="direccion", nullable=false, length=200)
 	private String direccion;
-
+	
 	@Column(name="estacionamiento_idestacionamiento", unique=true, nullable=false)
 	private int estacionamiento_idestacionamiento;
-
+	
 	@Column(name="telefono", nullable=false, length=20)
 	private String telefono;
-
+	
 	@Column(name="sexo", nullable=false)
 	private int sexo;
-
+	
 	@Column(name="fechaNacimiento",  nullable=false)
 	private Date fechaNacimiento;
-
+	
 	@Column(name="ubi_xUsuario", nullable=true)
 	private float ubi_xUsuario;
-
+	
 	@Column(name="ubi_yUsuario", nullable=true)
 	private float ubi_yUsuario;
-
+	
 	public Usuario() {
 	}
 
@@ -164,6 +166,6 @@ public class Usuario implements Serializable {
 		this.ubi_yUsuario = ubi_yUsuario;
 	}
 
-
+	
 
 }

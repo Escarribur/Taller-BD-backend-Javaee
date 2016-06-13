@@ -20,6 +20,8 @@ public interface UsuarioFacade {
 	public List<Usuario> findAll();
 
 	public List<Usuario> findRange(int[] range);
+	
+	public List<Usuario> cercanos(float ubix, float ubiy);
 
 	public int count();
 
